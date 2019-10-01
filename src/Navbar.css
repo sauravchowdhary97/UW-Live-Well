@@ -1,0 +1,11 @@
+.navbar
+{
+	height: 15vh;
+}
+
+.logo
+{
+	font-family: 'Mansalva', cursive !important;
+	color: #800000;
+	font-weight: 400 !important;
+}

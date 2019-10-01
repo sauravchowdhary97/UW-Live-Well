@@ -1,0 +1,129 @@
+.background
+{
+	height: 100vh;
+  background-image: url('https://creativewriting.wisc.edu/images/campusaerial.jpg');
+  background-size: cover;
+	background-position: center;
+	width: 100%;
+	max-height: 100vh;
+}
+
+.sheet
+{
+ 	background-color: rgba(255, 255, 255, .8);
+	height: 100vh;
+	width: 100%;
+}
+
+.slideContainer
+{
+	width: 50%;
+	height: 82vh;
+}
+
+.flex-wrapper
+{
+	display: flex;
+	flex-direction: row;
+  flex-flow: row wrap;
+}
+
+.flex-col
+{
+  display: flex;
+  flex-direction: column;
+}
+
+h3 
+{
+  text-align: center;
+}
+
+.slide > div 
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 82vh;
+}
+
+.slide span {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 3%;
+  padding-right: 3%;
+  height: 82vh;
+  line-height: 1.75;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.signin-form
+{
+	display: flex;
+	flex-direction: row;/*
+	background-color: rgba(112,112,112,0.1);*/
+	height: 82vh;
+	width: 100%;
+	align-items: center;
+  justify-content: center;
+	text-align: center;
+}
+
+.form-div
+{
+  padding: 20px 40px;
+}
+
+.input-box
+{
+  padding: 10px;
+  margin: 10px 0px;
+  height: 40px;
+  width: 300px;
+  font-size: 16px;
+}
+
+input:focus
+{
+  outline: none;
+}
+
+.checkbox
+{
+  margin: 10px 0;
+}
+
+.checkbox:hover
+{
+  cursor: pointer;
+}
+
+#check:hover
+{
+  cursor: pointer;
+}
+
+.button
+{
+  margin: 10px 0;
+  padding: 7px;
+  align-self: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 5%;
+  background-color: #5DB85B; /*#337AB7;*/
+  border-color: #5DB85B; /*#337AB7;*/
+  font-size: 20px;
+  color: white;
+}
+
+.button:hover
+{
+  opacity: 0.9;
+  cursor: pointer;
+}
