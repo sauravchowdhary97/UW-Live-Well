@@ -12,7 +12,6 @@ class LandingPage extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  console.log(props);
 	}
 
 	render() 
@@ -31,8 +30,10 @@ class LandingPage extends Component
 				        <br/>
 				        <div className="f3 fw2 black "> I am looking to </div>
 				        <div>
-					        <a class="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton" href="#0">Find a Roommate</a>
-					        <a class="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton" href="#0">Find a Property</a>
+					        <a className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton" 
+					        	href="#0">Find a Roommate</a>
+					        <a className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton"
+					        	href="#0">Find a Property</a>
 				        </div>
 			      </div>
 			    </div>

@@ -37,6 +37,14 @@ const Navbar = (props) => {
 		      }
 
 		      {
+	          	props.greeting===true ?
+	          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 pointer">
+	          	 Hello, Saurav </p> 
+		          : null
+		      }
+
+		      {
+		      	//on click of sign out button should sign out and redirect to home page
 	          	props.signout===true ?
 	          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 ba pointer">
 	          	 Sign Out </p> 
