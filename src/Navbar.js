@@ -12,6 +12,10 @@ const Navbar = (props) => {
 	const handleRegisterClick = () => {
 		props.history.push("/register");
 	}
+	//and make currentUser null or something (no sessions)
+	const handleSignOutClick = () => {
+		props.history.push("/");
+	}
 
 	return (
 		<nav className="dt w-100 pa3 center navbar"> 
@@ -46,7 +50,8 @@ const Navbar = (props) => {
 		      {
 		      	//on click of sign out button should sign out and redirect to home page
 	          	props.signout===true ?
-	          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 ba pointer">
+	          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 ba pointer"
+	          		onClick = {handleSignOutClick}>
 	          	 Sign Out </p> 
 		          : null
 		      }
