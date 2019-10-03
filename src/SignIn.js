@@ -23,6 +23,8 @@ class SignIn extends Component
 	{
 		event.preventDefault();
 		
+		if(this.state.email==="" || this.state.password==="")
+			alert("Enter login credentials");
 		console.log(this.state);
 		fetch('http://localhost:3000/signin', {
 			method: 'post',

@@ -3,13 +3,11 @@ import { withRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 import './slide.css';
 
-//connect to backend and validate on submit
-// check for invalidation inputs acc to Bootstrap framework
 const initialState = {
 	email: "",
 	password: "",
 	confirmPassword: "",
-	phoneNumber: "",
+	name: "",
 	checkbox: false
 };
 
@@ -27,27 +25,35 @@ class Register extends Component
 		event.preventDefault();
 		console.log(this.state);
 
-		fetch('http://localhost:3000/register', {
-			method: 'post',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				email: this.state.email,
-				password: this.state.password,
-				confirmPassword: this.confirmPassword,
-				phoneNumber: this.phoneNumber,
-				checkbox: this.checkbox
+		if(this.state.email==="" || this.state.name===""
+			|| this.state.password==="")
+			alert("Please fill out all details!");
+		if(!this.state.email.includes('@') 
+			|| !this.state.email.includes('.'))
+			alert("Enter a correct email address");
+		else if(this.state.password!==this.state.confirmPassword)
+			alert("Passwords don't match! Please try again!");
+		else {
+			fetch('http://localhost:3000/register', {
+				method: 'post',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					email: this.state.email,
+					name: this.state.name,
+					password: this.state.password
+				})
 			})
-		})
-		.then(res => res.json())
-		.then(user => {
-			if(user)
-			{
-				//this.props.loadUser(user);
-				this.props.history.push("/profile");
-			}
-			else
-				console.log(user);
-		})
+			.then(res => res.json())
+			.then(user => {
+				if(user)
+				{
+					//this.props.loadUser(user);
+					this.props.history.push("/profile");
+				}
+				else
+					console.log(user);
+			})
+		}
 	}
 
 	handleChange = async (event) =>
@@ -78,17 +84,17 @@ class Register extends Component
 							    <form className="flex-col" onSubmit={this.handleSubmit}>
 
 							    	<label> Email 
-							    	<i className="fa fa-user ph1" aria-hidden="true"></i>
+							    	<i className="fa fa-envelope ph1" aria-hidden="true"></i>
 							    	</label>
 							    	<input name="email" type="email" className="input-box" required 
 							    		placeholder="Email address" onChange={this.handleChange}
 							    		/>
 							    	<br/>
-							    	<label> Phone Number 
-							    	<i className="fa fa-phone ph1" aria-hidden="true"></i>
+							    	<label> Name 
+							    	<i className="fa fa-user ph1" aria-hidden="true"></i>
 							    	</label>
-							    	<input name="phoneNumber" type="number" className="input-box" required 
-							    		placeholder="Phone Number" onChange={this.handleChange}/>
+							    	<input name="name" type="text" className="input-box" required 
+							    		placeholder="Full Name" onChange={this.handleChange}/>
 							    	<br/>
 							    	<label> Password <i className="fa fa-lock ph1" aria-hidden="true"></i> </label>
 							    	<input name="password" type="password" className="input-box" required
