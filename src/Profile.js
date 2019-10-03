@@ -27,7 +27,8 @@ class Profile extends Component
 		return(
 			<div className = "background">
 				<div className = "sheet">
-					<Navbar register={false} signin={false} signout={true} greeting={true}/>
+					<Navbar profile={true} register={false} signin={false} signout={true} greeting={true}/>
+					
 					<div className="flex-container-row">
 						<div className = "black-80 ml4 profile-info pv4">
 							<div className = "flex-container-column">
@@ -46,51 +47,53 @@ class Profile extends Component
 								</div>
 								<div className="edit-button-area mt5">
 								 	<a className="edit-button f6 link dim ph3 pv2 mb2 dib white" href="/">
-								 	Edit Details</a>
+								 	 Edit Details</a>
 								</div>
 							</div>
 						</div>
 
 						<div className = "black-80 ba-white bl fav-listings pv4 flex flex-wrap">
-							<span style={{fontSize: '45px', color: '#800000', fontFamily: 'Josefin Sans'}}>
+							<span style={{color: '#800000'}} className='sub-header'>
 							 Favorite Listings </span>
-								<article className="br2 ba dark-gray b--black-10 mv4 w-100 mw6 center">
+								<article className="br2 ba dark-gray b--black-50 mv4 w-100 mw6 center">
 								  <img src="https://www.madisoncampusanddowntownapartments.com/images/serialized/51821_l.jpg"
-								  	class="db w-100 br2 br--top" 
-								  	alt="Photo of a kitten looking menacing."/>
-								  <div class="pa2 ph3-ns pb3-ns">
-								    <div class="dt w-100 mt1">
-								      <div class="dtc">
-								        <h1 class="f5 f4-ns mv0">Name: Lark at Kohl</h1>
+								  	className="db w-100 br2 br--top" 
+								  	alt=" oapt."/>
+								  <div className="pa2 ph3-ns pb3-ns">
+								    <div className="dt w-100 mt1">
+								      <div className="dtc">
+								        <h1 className="f5 f4-ns mv0">Name: Lark at Kohl</h1>
 								      </div>
-								      <div class="dtc tr">
-								        <h2 class="f5 mv0">$1,000</h2>
+								      <div className="dtc tr">
+								        <h2 className="f5 mv0">$1,000</h2>
 								      </div>
 								    </div>
-								    <p class="f6 lh-copy measure mt2 black-70">
+								    <p className="f6 lh-copy measure mt2 black-70">
 								      Located at North Bedford Street, Lark at Kohl is situated right in the middle of campus!
 								    </p>
-								    <button type="button" class="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
+								    {////onclick functionality
+								}
+								    <button type="button" className="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
 								  </div>
 								</article>
 
-								<article className="br2 ba dark-gray b--black-10 mv4 w-100 mw6 center">
+								<article className="br2 ba dark-gray b--black-50 mv4 w-100 mw6 center">
 								  <img src="https://cdngeneral.rentcafe.com/dmslivecafe/3/296856/4%20N%20Park%20St%20[Exterior]-3Cropped.jpg?crop=(76,11,261.37254901960716,174)&cropxunits=300&cropyunits=174&quality=85&scale=both&"
-								  	class="db w-100 br2 br--top" 
-								  	alt="Photo of a kitten looking menacing."/>
-								  <div class="pa2 ph3-ns pb3-ns">
-								    <div class="dt w-100 mt1">
-								      <div class="dtc">
-								        <h1 class="f5 f4-ns mv0">Name: Park Regent</h1>
+								  	className="db w-100 br2 br--top" 
+								  	alt="apt."/>
+								  <div className="pa2 ph3-ns pb3-ns">
+								    <div className="dt w-100 mt1">
+								      <div className="dtc">
+								        <h1 className="f5 f4-ns mv0">Name: Park Regent</h1>
 								      </div>
-								      <div class="dtc tr">
-								        <h2 class="f5 mv0">$800</h2>
+								      <div className="dtc tr">
+								        <h2 className="f5 mv0">$800</h2>
 								      </div>
 								    </div>
-								    <p class="f6 lh-copy measure mt2 black-70">
+								    <p className="f6 lh-copy measure mt2 black-70">
 								      Located at North Park Street, Park Regent is situated right in the middle of campus!
 								    </p>
-								    <button type="button" class="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
+								    <button type="button" className="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
 								  </div>
 								</article>
 						</div>

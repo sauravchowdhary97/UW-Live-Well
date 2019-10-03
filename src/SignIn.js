@@ -22,6 +22,23 @@ class SignIn extends Component
 	handleSubmit = (event) => 
 	{
 		event.preventDefault();
+		
+		console.log(this.state);
+		fetch('http://localhost:3000/signin', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.id)
+				this.props.history.push("/profile");
+			else
+				console.log(data);
+		})
 		this.setState({email: '', password: ''});
 	}
 
@@ -37,11 +54,6 @@ class SignIn extends Component
 		const x = document.getElementById("check").checked;
     	document.getElementById("check").checked = x===true ? false : true;
     	await this.setState({checkbox: document.getElementById("check").checked});
-	}
-
-	handleSignInClick = (props) => {
-		console.log(props);
-		props.history.push("/feed");
 	}
 
 	render() 
@@ -71,9 +83,7 @@ class SignIn extends Component
 							    			onClick={this.check}/> Keep me logged in
 							    	</div>
 							    	<input className = "button" type="submit" value="Sign In"
-							    		onClick = {() => {
-							    			this.props.history.push("/profile");
-							    		}}/>
+							    		onClick = {this.handleSubmit}/>
 							    </form>
 						    </div>
 					    </div>

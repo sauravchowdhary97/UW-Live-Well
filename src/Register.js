@@ -26,6 +26,28 @@ class Register extends Component
 	{
 		event.preventDefault();
 		console.log(this.state);
+
+		fetch('http://localhost:3000/register', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				email: this.state.email,
+				password: this.state.password,
+				confirmPassword: this.confirmPassword,
+				phoneNumber: this.phoneNumber,
+				checkbox: this.checkbox
+			})
+		})
+		.then(res => res.json())
+		.then(user => {
+			if(user)
+			{
+				//this.props.loadUser(user);
+				this.props.history.push("/profile");
+			}
+			else
+				console.log(user);
+		})
 	}
 
 	handleChange = async (event) =>
@@ -81,9 +103,7 @@ class Register extends Component
 							    			onClick={this.check}/> Keep me logged in
 							    	</div>
 							    	<input className = "button" type="submit" value="Register"
-							    		onClick = {() => {
-							    			this.props.history.push("/profile");
-							    		}}/>
+							    		onClick = {this.handleSubmit}/>
 							    </form>
 						    </div>
 					    </div>

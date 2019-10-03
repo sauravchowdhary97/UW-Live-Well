@@ -7,7 +7,24 @@ import Profile from './Profile';
 import './App.css';
 
 const initialState = {
-  currentUser: null
+  currentUser: {
+    id: '',
+    name: '',
+    email: '',
+    phoneNumber: '',
+    joined: ''
+  }
+}
+
+const loadUser = (user) =>
+{
+  this.setState({user: {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    phoneNumber: user.phoneNumber,
+    joined: user.joined
+  }})
 }
 
 class App extends Component 
@@ -16,6 +33,12 @@ class App extends Component
   {
     super(props);
     this.state = initialState;
+  }
+
+  componentDidMount () {
+    fetch('http://localhost:3000')
+      .then(res => res.json())
+      .then(console.log);
   }
 
   render()
@@ -32,7 +55,7 @@ class App extends Component
           />
 
           <Route exact path = '/register' 
-            render = { () => <Register /> }
+            render = { () => <Register loadUser={this.loadUser}/> }
           />
 
           <Route exact path = '/profile'

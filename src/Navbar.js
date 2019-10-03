@@ -23,6 +23,16 @@ const Navbar = (props) => {
 	          <a href="/" id="name" className="dib pa1 grow-large fw1 logo">
 	            UW - Live Well!</a>
 	        </div>
+	        {
+	        	props.profile===true ? 
+	        		<div className ="bg- tc">
+						        <a className="f6 link ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton" 
+						        	href="#0">List a property</a>
+						        <a className="f6 link ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton"
+						        	href="#0">Rent a Property</a>
+					</div>
+					: null
+	        }
 	        <div className="dtc v-mid tr pa3 sans-serif">
 	          <p className="f4 fw3 hover-black no-underline black-70 dn dib-ns pv1 ph3 pointer" 
 	          	 href="/" >How it works</p>
