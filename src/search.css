@@ -1,0 +1,59 @@
+.background-search
+{
+	background: url('https://midwestglasstinters.com/wp-content/uploads/2018/01/CONTACT3-living-in-madison-wisconsin-progressive-culture-in-the-capital-4-2.png');
+	height: 75vh;
+	background-size: cover;
+	background-position: center;
+	padding: 0;
+	margin: 0;
+}
+
+.sheet-search
+{
+	background: rgba(0,0,0,0.7);
+	height: 75vh;
+
+}
+
+.search-text
+{
+	text-decoration: none;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 2.7rem;
+}
+
+.search-subtext
+{
+	text-decoration: underline;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.7rem;
+}
+
+.filter-area
+{
+	width: 100%;
+	height: 150px;
+}
+
+.search-input-box
+{
+	padding: 10px;
+  margin: 10px 0px;
+  height: 55px;
+  width: 200px;
+  font-size: 16px;
+}
+
+.filter-button
+{
+  margin: 10px 0;
+  padding: 7px;
+  align-self: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 5%;
+  background-color: #5DB85B; /*#337AB7;*/
+  border-color: #5DB85B; /*#337AB7;*/
+  font-size: 20px;
+  color: white;
+}

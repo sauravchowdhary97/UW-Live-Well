@@ -86,3 +86,18 @@
 	justify-content: center;
 	vertical-align: center;
 }
+
+.listings
+{
+	width: 100%;
+	background-color: rgba(0,0,0,0.01);
+	overflow-y: auto;
+	display: flex;
+	justify-content: center;
+	vertical-align: center;
+}
+
+img
+{
+	height: 400px;
+}

@@ -5,6 +5,8 @@ import SignIn from './SignIn';
 import Register from './Register';
 import Profile from './Profile';
 import List from './List';
+import Search from './Search';
+import Results from './Results';
 import './App.css';
 
 const initialState = {
@@ -54,6 +56,14 @@ class App extends Component
 
           <Route exact path = '/list'
             render = { () => <List />} 
+          />
+
+          <Route exact path = '/search'
+            render = { () => <Search />}
+          />
+
+          <Route exact path = '/results'
+            render = { () => <Results />}
           />
         </Switch>
       </div>

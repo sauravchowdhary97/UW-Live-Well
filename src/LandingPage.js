@@ -14,6 +14,15 @@ class LandingPage extends Component
 	  this.state = initialState;
 	}
 
+	handleListClick = () => {
+		this.props.history.push("/signin");
+	}
+
+	handleRentClick = () =>
+	{
+		this.props.history.push("/search");
+	}
+
 	render() 
 	{
 	  return (
@@ -30,10 +39,12 @@ class LandingPage extends Component
 				        <br/>
 				        <div className="f3 fw2 black "> I am looking to </div>
 				        <div>
-					        <a className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton" 
-					        	href="#0">Find a Roommate</a>
-					        <a className="f6 link dim ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton"
-					        	href="#0">Find a Property</a>
+					        <p className="dim pointer f6 link ba bw1 ph3 
+							        	pv2 mb2 dib dark-gray mt3 mh2 customButton" 
+							        	onClick={this.handleListClick}>List a property</p>
+							<p className="dim pointer f6 link ba bw1 ph3 
+							        	pv2 mb2 dib dark-gray mt3 mh2 customButton"
+							        	onClick={this.handleRentClick}>Rent a Property</p>
 				        </div>
 			      </div>
 			    </div>

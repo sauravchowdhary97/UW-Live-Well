@@ -48,6 +48,11 @@ class Navbar extends Component
 		this.props.history.push("/profile", {email: this.state.email});
 	}
 
+	handleRentClick = () =>
+	{
+		this.props.history.push("/search", { email: this.state.email});
+	}
+
 	render() {
 		return (
 			<nav className="dt w-100 pa3 center navbar"> 
@@ -61,8 +66,9 @@ class Navbar extends Component
 							        <p className="pointer f6 link ba bw1 ph3 
 							        	pv2 mb2 dib dark-gray mt3 mh2 customButton" 
 							        	onClick={this.handleListClick}>List a property</p>
-							        <a className="f6 link ba bw1 ph3 pv2 mb2 dib dark-gray mt3 mh2 customButton"
-							        	href="#0">Rent a Property</a>
+							        <p className="pointer f6 link ba bw1 ph3 
+							        	pv2 mb2 dib dark-gray mt3 mh2 customButton"
+							        	onClick={this.handleRentClick}>Rent a Property</p>
 						</div>
 						: null
 		        }
