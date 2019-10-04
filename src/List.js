@@ -63,7 +63,7 @@ class List extends Component
 							    		placeholder="Email address" onChange={this.handleChange}
 							    		/>
 							    	<br/>
-							    	<input className = "button" type="submit" value="Register"
+							    	<input className = "button" type="submit" value="List"
 							    		onClick = {this.handleSubmit}/>
 							    </form>
 						    </div>
