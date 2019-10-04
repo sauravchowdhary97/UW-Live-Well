@@ -36,7 +36,7 @@ class Navbar extends Component
 	handleListClick = () => {
 		if(this.props.signin===false)
 		{
-			const tempEmail = this.props.location.state.email;
+			const tempEmail = this.state.email;
 			this.props.history.push("/list", { email: tempEmail});
 
 		}

@@ -17,17 +17,6 @@ const initialState = {
   }
 }
 
-const loadUser = (user) =>
-{
-  this.setState({user: {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    phoneNumber: user.phoneNumber,
-    joined: user.joined
-  }})
-}
-
 class App extends Component 
 {
   constructor(props) 
