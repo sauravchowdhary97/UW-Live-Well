@@ -6,20 +6,68 @@ import './slide.css';
 
 //Need to handlesubmit to back end to send data
 //remove button for fav listings
+//update user info
 //questions/comments
 const initialState = {
 	email: "",
 	password: "",
 	name: "",
+	favListings: "",
+	newPassword: ""
 };
 
-class Profile extends Component 
+class Profile extends Component
 {
 	constructor(props) 
 	{
 	  super(props);
 	  this.state = initialState;
+	  //this.setState({ email: props.location.state.email});
+	  console.log(props.location.state.email, "here");
+	  this.state.email = props.location.state.email;
+	  console.log(this.state.email, "YOLO");
 	  console.log("Profile props-->", props);
+	}
+
+	handlePasswordChange = async (event) =>
+	{
+		const { name, value } = event.target;
+		await this.setState({ [name]: value });  // dynamically update the state values
+		console.log(this.state);
+	}
+
+	toggleShowPassword = (event) => {
+		document.getElementById('editPassDiv').style.display = 
+			document.getElementById('editPassDiv').style.display === 'none' ? 'block' : 'none';
+	}
+
+	updatePassword = (event) => {
+		//send new password to backend
+		if(this.state.newPassword==="")
+			alert("Enter the new password!");
+		else
+		{
+			fetch('http://localhost:3000/update', {
+				method: 'post',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					email: this.state.email,
+					password: this.state.newPassword
+				})
+			})
+			.then(res => res.json())
+			.then(val => {
+				if(val>0)
+				{
+					alert("Updated successfully!");
+				}
+				else
+					console.log(val);
+			})
+			
+			document.getElementById('editPassDiv').style.display = 
+				document.getElementById('editPassDiv').style.display === 'none' ? 'block' : 'none';
+		}
 	}
 
 	render ()
@@ -39,15 +87,26 @@ class Profile extends Component
 								</div>
 								<div className="sub-header">
 									<i className="fa fa-envelope ml3 mr2" style={{fontSize: '50px', color: '#800000'}}/>
-									<span className="black-70"> schowdhary@wisc.edu </span>
+									<span className="black-70"> {this.state.email} </span>
 								</div>
 								<div className="sub-header">
-									<i className="fa fa-phone ml3 mr2" style={{fontSize: '50px', color: '#800000'}}/>
-									<span className="black-70"> +1 608 733 9544 </span>
+									<i className="fa fa-calendar ml3 mr2" style={{fontSize: '50px', color: '#800000'}}/>
+									<span className="black-70"> 01st October, 2019 </span>
 								</div>
 								<div className="edit-button-area mt5">
-								 	<a className="edit-button f6 link dim ph3 pv2 mb2 dib white" href="/">
-								 	 Edit Details</a>
+								 	<p className="edit-button f6 link dim ph3 pv2 mb2 tc dib white pointer"
+								 		onClick = {this.toggleShowPassword}> 
+								 		Update Details
+								 	</p>
+								 	<div id = "editPassDiv" className="mt4" style={{display: 'none'}}>
+								 		<label> New Password <i className="fa fa-lock ph1" aria-hidden="true"></i> </label>
+							    		<input name="newPassword" type="password" className="input-box" required
+							    			placeholder="Password" onChange={this.handlePasswordChange}/>
+							    		<p className="update-button f8 link dim ph4 pv2 mb2 tc dib white pointer"
+								 		onClick = {this.updatePassword}> 
+								 		Update
+								 	</p>
+								 	</div>
 								</div>
 							</div>
 						</div>

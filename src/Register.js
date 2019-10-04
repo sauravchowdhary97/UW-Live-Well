@@ -47,8 +47,8 @@ class Register extends Component
 			.then(user => {
 				if(user)
 				{
-					//this.props.loadUser(user);
-					this.props.history.push("/profile");
+					//this.props.loadUser(user);history.location.state
+					this.props.history.push("/profile", { email: this.state.email });
 				}
 				else
 					console.log(user);

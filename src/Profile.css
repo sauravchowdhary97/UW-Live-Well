@@ -60,7 +60,18 @@
 	background-color: #800000;
 	display: flex;
 	width: 22%;
-	height: 50px;
+	height: 60px;
+	font-size: 1.2rem;
+	text-align: center;
+	margin-left: 39%;
+}
+
+.update-button
+{
+	background-color: #800000;
+	display: flex;
+	width: 22%;
+	height: 40px;
 	font-size: 1.2rem;
 	text-align: center;
 	margin-left: 39%;
