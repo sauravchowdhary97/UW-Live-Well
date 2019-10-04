@@ -23,7 +23,11 @@ class Profile extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  this.state.email = props.location.state.email;
+	  console.log(props);
+	  if(props.location.state===undefined)
+	  	props.history.push('/signin');
+	  else
+	  	this.state.email = props.location.state.email;
 	  console.log("Profile props-->", props);
 	}
 

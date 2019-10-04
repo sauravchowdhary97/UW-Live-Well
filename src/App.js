@@ -4,6 +4,7 @@ import LandingPage from './LandingPage';
 import SignIn from './SignIn';
 import Register from './Register';
 import Profile from './Profile';
+import List from './List';
 import './App.css';
 
 const initialState = {
@@ -60,7 +61,11 @@ class App extends Component
 
           <Route exact path = '/profile'
             render = { () => <Profile />} 
-          />         
+          />
+
+          <Route exact path = '/list'
+            render = { () => <List />} 
+          />
         </Switch>
       </div>
     );
