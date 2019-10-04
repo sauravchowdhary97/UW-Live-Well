@@ -51,9 +51,9 @@ const Navbar = (props) => {
 		      }
 
 		      {
-	          	props.greeting===true ?
+	          	props.greeting!==undefined ?
 	          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 pointer">
-	          	 Hello, Saurav </p> 
+	          	 Hello, {props.greeting} </p> 
 		          : null
 		      }
 

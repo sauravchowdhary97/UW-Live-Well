@@ -12,6 +12,7 @@ const initialState = {
 	email: "",
 	password: "",
 	name: "",
+	joined: "",
 	favListings: "",
 	newPassword: ""
 };
@@ -22,11 +23,26 @@ class Profile extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  //this.setState({ email: props.location.state.email});
-	  console.log(props.location.state.email, "here");
 	  this.state.email = props.location.state.email;
-	  console.log(this.state.email, "YOLO");
 	  console.log("Profile props-->", props);
+	}
+
+	async componentDidMount() {
+		fetch('http://localhost:3000/details', {
+				method: 'post',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					email: this.state.email
+				})
+			})
+			.then(res => res.json())
+			.then(data => {
+				this.setState({name: data[0].name, email: data[0].email,
+					joined: data[0].joined});
+				//set state with data received from backend
+				console.log(this.state);
+			})
+			.catch(err => { console.log(err)});
 	}
 
 	handlePasswordChange = async (event) =>
@@ -43,6 +59,7 @@ class Profile extends Component
 
 	updatePassword = (event) => {
 		//send new password to backend
+		console.log(this.state.newPassword, "newpass");
 		if(this.state.newPassword==="")
 			alert("Enter the new password!");
 		else
@@ -66,7 +83,8 @@ class Profile extends Component
 			})
 			
 			document.getElementById('editPassDiv').style.display = 
-				document.getElementById('editPassDiv').style.display === 'none' ? 'block' : 'none';
+				document.getElementById('editPassDiv').style.display === 
+					'none' ? 'block' : 'none';
 		}
 	}
 
@@ -75,7 +93,7 @@ class Profile extends Component
 		return(
 			<div className = "background">
 				<div className = "sheet">
-					<Navbar profile={true} register={false} signin={false} signout={true} greeting={true}/>
+					<Navbar profile={true} register={false} signin={false} signout={true} greeting={this.state.name}/>
 					
 					<div className="flex-container-row">
 						<div className = "black-80 ml4 profile-info pv4">
@@ -83,7 +101,7 @@ class Profile extends Component
 								<div className = "sub-header">
 									<i className='far fa-user-circle ml3 mr2'/>
 									<span style={{fontSize: '50px', color: '#800000'}}> I'm </span>
-									Saurav Chowdhary
+									{this.state.name}
 								</div>
 								<div className="sub-header">
 									<i className="fa fa-envelope ml3 mr2" style={{fontSize: '50px', color: '#800000'}}/>
@@ -91,7 +109,7 @@ class Profile extends Component
 								</div>
 								<div className="sub-header">
 									<i className="fa fa-calendar ml3 mr2" style={{fontSize: '50px', color: '#800000'}}/>
-									<span className="black-70"> 01st October, 2019 </span>
+									<span className="black-70"> {this.state.joined} </span>
 								</div>
 								<div className="edit-button-area mt5">
 								 	<p className="edit-button f6 link dim ph3 pv2 mb2 tc dib white pointer"

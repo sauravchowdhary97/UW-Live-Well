@@ -37,11 +37,15 @@ class SignIn extends Component
 		.then(res => res.json())
 		.then(data => {
 			if(data.id)
-				this.props.history.push("/profile");
+			{
+				this.props.history.push("/profile", { email: this.state.email });
+			}
 			else
+			{
+				alert("Email and password do not match. Pls try again!")
 				console.log(data);
+			}
 		})
-		this.setState({email: '', password: ''});
 	}
 
 	handleChange = async (event) =>
