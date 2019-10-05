@@ -79,7 +79,7 @@ class Results extends Component
 					    <p className="f4 lh-copy measure mt2 black-70">
 					     Rooms: {data.rooms}
 					     <br/>
-					     Sharing Preference: {this.props.location.state.results[0].sharing}
+					     Sharing Preference: {data.sharing}
 					     <br/>
 					     Pets: {data.pets}
 					    </p>

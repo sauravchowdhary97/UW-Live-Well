@@ -13,8 +13,8 @@ const initialState = {
 	password: "",
 	name: "",
 	joined: "",
-	favListings: "",
-	newPassword: ""
+	favListings: '',
+	newPassword: ''
 };
 
 class Profile extends Component
@@ -32,7 +32,7 @@ class Profile extends Component
 	}
 
 	async componentDidMount() {
-		fetch('http://localhost:3000/details', {
+		await fetch('http://localhost:3000/details', {
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
@@ -47,6 +47,42 @@ class Profile extends Component
 				console.log(this.state);
 			})
 			.catch(err => { console.log(err)});
+
+		var fav = '';
+		await fetch('http://localhost:3000/getFavListings', {
+				method: 'post',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					email: this.state.email
+				})
+			})
+			.then(res => res.json())
+			.then(data => {
+				fav = data;
+				//set state with data received from backend
+				console.log(fav, "after favlistings");
+			})
+			.catch(err => { console.log(err)});
+
+		let fav2 = [];
+		for(let i=0; i<fav.length; i++) {
+			console.log(fav[i], "hereee");
+			await fetch('http://localhost:3000/getListing', {
+					method: 'post',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						id: fav[i].listingid
+					})
+				})
+				.then(res => res.json())
+				.then(data => {
+					fav2.push(data[0]);
+					this.setState({favListings: fav2});
+					console.log(this.state.favListings, "WBH");
+				})
+				.catch(err => { console.log(err)});
+		}
+		console.log("FACCC", this.state.favListings)
 	}
 
 	handlePasswordChange = async (event) =>
@@ -127,7 +163,7 @@ class Profile extends Component
 							    		<p className="update-button f8 link dim ph4 pv2 mb2 tc dib white pointer"
 								 		onClick = {this.updatePassword}> 
 								 		Update
-								 	</p>
+								 		</p>
 								 	</div>
 								</div>
 							</div>
@@ -135,48 +171,46 @@ class Profile extends Component
 
 						<div className = "black-80 ba-white bl fav-listings pv4 flex flex-wrap">
 							<span style={{color: '#800000'}} className='sub-header'>
-							 Favorite Listings </span>
-								<article className="br2 ba dark-gray b--black-50 mv4 w-100 mw6 center">
-								  <img src="https://www.madisoncampusanddowntownapartments.com/images/serialized/51821_l.jpg"
-								  	className="db w-100 br2 br--top" 
-								  	alt=" oapt."/>
-								  <div className="pa2 ph3-ns pb3-ns">
-								    <div className="dt w-100 mt1">
-								      <div className="dtc">
-								        <h1 className="f5 f4-ns mv0">Name: Lark at Kohl</h1>
-								      </div>
-								      <div className="dtc tr">
-								        <h2 className="f5 mv0">$1,000</h2>
-								      </div>
-								    </div>
-								    <p className="f6 lh-copy measure mt2 black-70">
-								      Located at North Bedford Street, Lark at Kohl is situated right in the middle of campus!
-								    </p>
-								    {////onclick functionality
-								}
-								    <button type="button" className="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
-								  </div>
-								</article>
+							 	Favorite Listings </span>
+							{
+								this.state.favListings==='' ? null :
+								this.state.favListings.map(data => 
+									<article key={data.id} className="br2 ba dark-gray b--black-50 mv4 w-100 mw6 center">
+									  <img src={data.image}
+									    className="db w-100 br2 br--top" 
+									  	alt="Just another building"/>
+									  <div className="pa2 ph3-ns pb3-ns">
+									    <div className="dt w-100 mt1">
+									      <div className="dtc">
+									        <h1 className="f4 f4-ns mv0 black-70">Name : "
+									        	{ data.propertyname}"
+									        </h1>
+									      </div>
+									      <div className="dtc tr">
+									        <h2 className="f4 mv0 black-80">Rent: $
+									        	{data.rent}
+									        </h2>
+									      </div>
+									    </div>
 
-								<article className="br2 ba dark-gray b--black-50 mv4 w-100 mw6 center">
-								  <img src="https://cdngeneral.rentcafe.com/dmslivecafe/3/296856/4%20N%20Park%20St%20[Exterior]-3Cropped.jpg?crop=(76,11,261.37254901960716,174)&cropxunits=300&cropyunits=174&quality=85&scale=both&"
-								  	className="db w-100 br2 br--top" 
-								  	alt="apt."/>
-								  <div className="pa2 ph3-ns pb3-ns">
-								    <div className="dt w-100 mt1">
-								      <div className="dtc">
-								        <h1 className="f5 f4-ns mv0">Name: Park Regent</h1>
-								      </div>
-								      <div className="dtc tr">
-								        <h2 className="f5 mv0">$800</h2>
-								      </div>
-								    </div>
-								    <p className="f6 lh-copy measure mt2 black-70">
-								      Located at North Park Street, Park Regent is situated right in the middle of campus!
-								    </p>
-								    <button type="button" className="pointer br2 ba b--dark-red bg-red white pa2 ml1 mv1 bg-animate hover-bg-dark-red border-box">Remove</button>
-								  </div>
-								</article>
+									    <p className="f4 lh-copy measure mt2 black-70">
+										     Rooms: {data.rooms}
+										     <br/>
+										     Sharing Preference: {data.sharing}
+										     <br/>
+										     Pets: {data.pets}
+									    </p>
+
+									    <button id = {data.id} type="button" className="pointer br2
+									     ba b--dark-red bg-red white pa2 ml1 mv1 
+									     bg-animate hover-bg-dark-red border-box"
+									     onClick = {this.handleRemoveClick}>
+									     	Remove from Favorites 
+									     </button>
+									  </div>
+									</article>
+							)
+							}
 						</div>
 					</div>
 				</div>
