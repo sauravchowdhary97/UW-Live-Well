@@ -14,7 +14,6 @@ class Navbar extends Component
 		this.state = initialState;
 		if(props.location.state!==undefined)
 			this.state.email = this.props.location.state.email;
-		console.log("Navbar", props);
 	}
 
 	handleSignInClick = () => {
@@ -26,6 +25,7 @@ class Navbar extends Component
 	}
 	//and make currentUser null or something (no sessions)
 	handleSignOutClick = () => {
+		this.setState(initialState);
 		this.props.history.push("/");
 	}
 
@@ -78,13 +78,15 @@ class Navbar extends Component
 		          <p className="f4 fw3 hover-black no-underline black-70 dn dib-ns pv1 ph3 pointer" 
 		          	 >Contact</p>
 		          {
-		          	this.props.register===false || this.state.email!=='' ? null : 
+		          	this.props.register===false || 
+		          		(this.state.email!=='' && this.props.register!==true)? null : 
 		          	<p className="f4 fw3 hover-black no-underline black-70 dn dib-ns pv1 ph3 pointer"
 		          		onClick = {this.handleRegisterClick}> Register </p>
 		          }
 
 		          {
-		          	this.props.signin===false || this.state.email!=='' ? null :
+		          	this.props.signin===false || 
+		          		(this.state.email!==''  && this.props.signin!==true) ? null :
 		          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 ba pointer"
 			          	onClick = {this.handleSignInClick}> Sign In </p> 
 			      }
@@ -94,7 +96,7 @@ class Navbar extends Component
 		          	<p className="f4 fw3 hover-black no-underline black-70 dib ml2 pv1 ph3 pointer"
 		          		onClick = {this.handleGreetingClick}>
 		          	 Hello, {this.props.greeting} </p> 
-			          : this.state.email!=='' ?
+			          : this.state.email!=='' && this.props.register!==true?
 			      	 <p className="f4 fw3 hover-black no-underline black-70 dn dib-ns pv1 ph3 pointer" 
 		          	 	onClick = {this.handleProfileClick}>Profile</p>
 		          	 	: null

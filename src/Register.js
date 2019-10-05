@@ -17,13 +17,11 @@ class Register extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  console.log("Register props-->", props);
 	}
 
 	handleSubmit = (event) => 
 	{
 		event.preventDefault();
-		console.log(this.state);
 
 		if(this.state.email==="" || this.state.name===""
 			|| this.state.password==="")
@@ -59,8 +57,7 @@ class Register extends Component
 	handleChange = async (event) =>
 	{
 		const { name, value } = event.target;
-		await this.setState({ [name]: value });  // dynamically update the state values
-		console.log(this.state);
+		await this.setState({ [name]: value }); 
 	}
 
 	check = async (event) => 
@@ -68,7 +65,6 @@ class Register extends Component
 		const x = document.getElementById("check").checked;
     	document.getElementById("check").checked = x===true ? false : true;
     	await this.setState({checkbox: document.getElementById("check").checked});
-    	console.log(this.state);
 	}
 
 	render()

@@ -16,7 +16,6 @@ class SignIn extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  console.log("Signin props-->", props);
 	}
 
 	handleSubmit = (event) => 
@@ -25,7 +24,6 @@ class SignIn extends Component
 		
 		if(this.state.email==="" || this.state.password==="")
 			alert("Enter login credentials");
-		console.log(this.state);
 		fetch('http://localhost:3000/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -43,7 +41,7 @@ class SignIn extends Component
 			else
 			{
 				alert("Email and password do not match. Pls try again!")
-				console.log(data);
+				
 			}
 		})
 	}
@@ -52,7 +50,6 @@ class SignIn extends Component
 	{
 		const { name, value } = event.target;
 		await this.setState({ [name]: value });
-		console.log(this.state);
 	}
 
 	check = async (event) => 

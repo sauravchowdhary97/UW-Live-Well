@@ -23,12 +23,10 @@ class Profile extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  console.log(props);
 	  if(props.location.state===undefined)
 	  	props.history.push('/signin');
 	  else
 	  	this.state.email = props.location.state.email;
-	  console.log("Profile props-->", props);
 	}
 
 	async componentDidMount() {
@@ -44,7 +42,6 @@ class Profile extends Component
 				this.setState({name: data[0].name, email: data[0].email,
 					joined: data[0].joined});
 				//set state with data received from backend
-				console.log(this.state);
 			})
 			.catch(err => { console.log(err)});
 
@@ -59,14 +56,11 @@ class Profile extends Component
 			.then(res => res.json())
 			.then(data => {
 				fav = data;
-				//set state with data received from backend
-				console.log(fav, "after favlistings");
 			})
 			.catch(err => { console.log(err)});
 
 		let fav2 = [];
 		for(let i=0; i<fav.length; i++) {
-			console.log(fav[i], "hereee");
 			await fetch('http://localhost:3000/getListing', {
 					method: 'post',
 					headers: {'Content-Type': 'application/json'},
@@ -78,18 +72,15 @@ class Profile extends Component
 				.then(data => {
 					fav2.push(data[0]);
 					this.setState({favListings: fav2});
-					console.log(this.state.favListings, "WBH");
 				})
 				.catch(err => { console.log(err)});
 		}
-		console.log("FACCC", this.state.favListings)
 	}
 
 	handlePasswordChange = async (event) =>
 	{
 		const { name, value } = event.target;
-		await this.setState({ [name]: value });  // dynamically update the state values
-		console.log(this.state);
+		await this.setState({ [name]: value });  
 	}
 
 	toggleShowPassword = (event) => {
@@ -99,7 +90,6 @@ class Profile extends Component
 
 	updatePassword = (event) => {
 		//send new password to backend
-		console.log(this.state.newPassword, "newpass");
 		if(this.state.newPassword==="")
 			alert("Enter the new password!");
 		else
@@ -126,6 +116,22 @@ class Profile extends Component
 				document.getElementById('editPassDiv').style.display === 
 					'none' ? 'block' : 'none';
 		}
+	}
+
+	handleRemoveClick = (event) => {
+		const id = event.target.id;
+		let fav2 = this.state.favListings;
+
+		for(let i=0; i<fav2.length; i++)
+		{
+			if(fav2[i].id == id)
+			{
+				fav2.splice(i,1);
+				i--;
+				break;
+			}
+		}
+		this.setState({favListings: fav2});
 	}
 
 	render ()

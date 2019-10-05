@@ -20,7 +20,6 @@ class List extends Component
 	{
 		super(props);
 		this.state = initialState;
-		console.log(props);
 		if(props.location.state)
 			this.state.email = props.location.state.email;
 		else
@@ -29,13 +28,11 @@ class List extends Component
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(event.target.name, event.target.value);
 		this.setState({ [name]: value});
 	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(this.state);
 		if(this.state.pets==="" || this.state.rent==="" || 
 			this.state.rooms==="" || this.state.sharing==="" 
 				|| this.state.availibility==="" || this.state.email==='')

@@ -19,7 +19,6 @@ class Search extends Component
 	{
 	  super(props);
 	  this.state = initialState;
-	  console.log(props, "Search page props");
 	  if(props.location.state!==undefined)
 	  {
 	  	this.state.email = props.location.state.email;
@@ -28,12 +27,10 @@ class Search extends Component
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(event.target.name, event.target.value);
 		this.setState({ [name]: value});
 	}
 
 	handleSubmitFilter = (event) => {
-		console.log(this.state);
 		if(this.state.minrent==='' || this.state.maxrent==='' 
 			|| this.state.pets==='' || this.state.sharing===''
 			|| this.state.rooms==='')
@@ -53,7 +50,6 @@ class Search extends Component
 					email: this.state.email,
 					results: data
 				});
-				console.log(data);
 			})
 			.catch(err => { console.log(err)});
 		}
@@ -72,7 +68,6 @@ class Search extends Component
 					email: this.state.email,
 					results: data
 				});
-				console.log(data.length);
 			})
 			.catch(err => { console.log(err)});
 	}

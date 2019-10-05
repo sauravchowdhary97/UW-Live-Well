@@ -29,7 +29,7 @@ class LandingPage extends Component
 	  	<div className = "landingPage cover bg-center">
 			<header className="sans-serif">
 			   	<div className="background-sheet pb5 pb6-m pb7-l">
-			   		<Navbar />
+			   		<Navbar register={true} signin={true}/>
 			        <div className="tc mt4 mt5-m mt6-l ph3">
 				        <h1 className="f2 f1-l fw2 black-90 mb0 lh-title">Welcome to
 				        	<span className="main-msg"> UW - Live Well! </span> </h1>
